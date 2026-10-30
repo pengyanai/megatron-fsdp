@@ -1,0 +1,35 @@
+# Copyright (c) 2023, NVIDIA CORPORATION.  All rights reserved.
+#
+# Vendored copy of Megatron-LM's megatron_fsdp package. See UPSTREAM.md for the
+# mirrored commit and the list of presentation-only changes.
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["megatron_fsdp", "megatron_fsdp.*"]
+
+[tool.setuptools.dynamic]
+version = { attr = "megatron_fsdp.package_info.__version__" }
+readme = { file = "README.md", content-type = "text/markdown" }
+
+[project]
+name = "megatron-fsdp"
+dynamic = ["version", "readme"]
+description = "Standalone vendored copy of NVIDIA Megatron-FSDP: high-performance Fully Sharded Data Parallelism that runs without Megatron-Core"
+requires-python = ">=3.10"
+license = { text = "See LICENSE" }
+dependencies = ["torch", "einops", "packaging"]
+keywords = ["fsdp", "sharding", "distributed", "pytorch", "moe", "training"]
+
+[project.optional-dependencies]
+emerging-optimizers = ["emerging-optimizers>=0.2"]
+
+[project.urls]
+Source = "https://github.com/pengyanai/megatron-fsdp"
+Upstream = "https://github.com/NVIDIA/Megatron-LM/tree/main/megatron/core/distributed/fsdp/src"
+PyPI = "https://pypi.org/project/megatron-fsdp/"
